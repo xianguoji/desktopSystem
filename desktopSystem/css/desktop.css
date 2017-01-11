@@ -1,0 +1,43 @@
+li,a,div{
+	font-family: "microsoft yahei"!important;
+}
+#bg{
+	position:fixed;
+	width:100%;
+	height:100%;
+	z-index: 0;
+}
+#decktopiconbox{
+	position: relative;
+	z-index: 1;
+	list-style: none;
+	padding-top: 20px;
+}
+#decktopiconbox>li {
+	width:80px;
+	height:100px;
+	padding: 5px 5px 10px 5px;
+	border: 1px solid transparent;
+	text-align: center;
+	color: #fff;
+}
+#decktopiconbox>li:hover{
+	border-radius:5px;
+	border:1px solid #fff;
+}
+p{
+	width:68px;
+	height:20px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space:nowrap;
+}
+
+.decktopicon{
+	width:50px;
+	height:50px;
+}
+
+#jqxMenu{
+	margin-left: 0 !important;
+}

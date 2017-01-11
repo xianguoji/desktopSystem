@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<script type="text/javascript" src="js/jquery-2.1.3.min.js"></script>
+	<script type="text/javascript" src="js/bootstrap.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"/>
+	<script type="text/javascript" src="js/jqx-all.js"></script>
+	<link rel="stylesheet" type="text/css" href="css/jqx.base.css"/>
+	<script type="text/javascript" src="js/jquery-ui.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="css/jquery-ui.min.css"/>
+	<link rel="stylesheet" type="text/css" href="css/desktop.css"/>
+
+	<title>模拟桌面</title>
+</head>
+<body>
+<div id='jqxMenu' style='visibility: visible; margin-left: 5px;width: auto; height: 30px;border:none'>
+	<ul>
+		<li><img style="width:20px;height:20px" src="img/windows10.png" alt=""/>
+			<ul id="topicon" style='width: 250px;'>
+				<li title="我的电脑"><a href="#"><img src='img/我的电脑.png' style='margin-right: 15px; width:20px; height:20px' />我的电脑</a></li>
+				<li title="移动端"><a href="#"><img src='img/移动端.png' style='margin-right: 15px; width:20px; height:20px' />移动端</a></li>
+				<li title="我的文档"><a href="#"><img src='img/我的文档.png' style='margin-right: 15px; width:20px; height:20px' />我的文档</a></li>
+				<li title="网络浏览器"><a href="#"><img src='img/网络浏览器.png' style='margin-right: 15px; width:20px; height:20px' />网络浏览器</a></li>
+				<li type='separator'></li>
+				<li title="用户"><img src='img/用户.png' style='margin-right: 15px; width:20px; height:20px' />用户
+					<ul>
+						<li><a href="#ConsumerPhoto">用户照片和视频</a></li>
+						<li><a href="#Mobile">手机</a></li>
+						<li><a href="#RIA">富互联网应用</a></li>
+						<li><a href="#TechnicalCommunication">技术交流</a></li>
+						<li><a href="#Training">培训和教学</a></li>
+						<li><a href="#WebConferencing">网络会议</a></li>
+					</ul>
+				</li>
+				<li title="解决方案"><a href="#"><img src='css/images/help.png' style='margin-right: 15px; width:20px; height:20px' />解决方案</a></li>
+			</ul>
+		</li>
+		<a id="SignOut" style="width:auto;float:right;margin-top: 5px;margin-right: 20px;" onclick='SignOut()'>
+			<img style="margin-right: 5px;margin-bottom: 3px; width:18px;" src="css/images/system-shutdown.png" alt="SignOut" />
+			退出
+		</a>
+		<span id="clock" style="width:auto;float:right;margin-top: 5px;margin-right: 20px">时间:</span>
+	</ul>
+</div>
+<img id="bg" class="img-responsive" src="img/bg7.jpg"/>
+
+<ul id="decktopiconbox">
+	<li title="我的电脑">
+		<img class="decktopicon" src="img/我的电脑.png"/>
+		<p>我的电脑</p>
+	</li>
+	<li title="移动端">
+		<img class="decktopicon" src="img/移动端.png"/>
+		<p>移动端</p>
+	</li>
+	<li title="我的文档">
+		<img class="decktopicon" src="img/我的文档.png"/>
+		<p>我的文档</p>
+	</li>
+	<li title="用户">
+		<img class="decktopicon" src="img/用户.png"/>
+		<p>用户</p>
+	</li>
+	<li title="网络浏览器">
+		<img class="decktopicon" src="img/网络浏览器.png"/>
+		<p>网络浏览器</p>
+	</li>
+	<li title="回收站">
+		<img class="decktopicon" src="img/回收站.png"/>
+		<p>回收站</p>
+	</li>
+</ul>
+
+
+
+<script type="text/javascript">
+	$(function(){
+		$("#decktopiconbox").sortable();//拖动排序----------------集成在jQuery ui中
+		$("#decktopiconbox").disableSelection();//拖动显示--------集成在jQuery ui中
+
+		$("#jqxMenu").jqxMenu({ animationShowDuration: 0, animationHideDuration: 0, animationShowDelay: 0 });
+
+		var w;
+		$("#decktopiconbox>li").dblclick(function(){
+//				console.log(this.title)
+			var t=this;
+			if($('#window' +t.title).length>0){
+				$('#window' +t.title).jqxWindow('destroy');
+			}
+			w=$.newWindow().init(t);
+//				console.log(t)
+		});
+		$("#topicon>li").click(function(){
+			var t=this;
+			if($('#window' +t.title).length>0){
+				$('#window' +t.title).jqxWindow('destroy');
+			}
+			$.newWindow().init(t);
+		});
+
+		$("#clock").clock();
+
+		// Create a jqxMenu
+
+	});
+
+
+	var n=0;
+	$.newWindow = function(options){
+
+		var defaultWindow = {
+//				title:						'New Window',//        没用到
+//				content:					'',
+//				windowId:					"",
+//				windowLayerId:				"#windowLayer",
+//
+//				minWidth:					50,
+//				minHeight:					50,
+//				maxWidth:					9999,
+//				maxHeight:					9999,
+//				width:						800,
+//				height:						"auto",
+//				position:					'defaultPosition',
+//				zIndex:						10000,
+//				isModal:					false,
+//				modalZIndex:				14000,
+//
+//				containerClass:				'',				// 'container' is preset
+//				extraContainer:				'',				// Raw HTML document required.
+//				showToolbar:				false,
+//				showHeader:					false,
+//				showFooter:					true,
+//				toolbarContent:				'',
+//				headerContent:				'',
+//				footerContent:				'',
+//
+//				showCloseButton:			true,
+//				showCollapseButton: 		false,
+//
+//				keyboardCloseKey:			'',
+//
+//				resizable:					false,
+//				draggable:					true,
+//				allowMaximize:				false,
+//				maximized:					false,			// Only Available when maximizing is allowed
+//				showOnTaskbar:				true,
+//
+//				onClose:					null,
+
+
+
+			createWindow:function (t) {
+				var div=$(
+						'<div> ' +
+						'<div id="window' +t.title+ '"> ' +
+						'<div id="windowHeader' +t.title+ '"> ' +
+						'<span>' +
+						"<img src='img/"+ t.title +".png' style='margin-right: 15px; width:20px; height:20px' />"+ t.title+
+						'</span> ' +
+						'</div> ' +
+						'<div style="overflow: hidden;" id="windowContent"> ' +
+						'<div id="content' +t.title+ '">'+
+						'<div id="jqxWidget' +t.title+ '" style="height: 300px;">'+
+
+
+
+
+
+						'</div>'+
+						'</div>' +
+						' </div> ' +
+						'</div>');
+
+
+				var source = [
+					{ icon: "css/images/mailIcon.png", label: "Mail", expanded: true, items: [
+						{ icon: "css/images/calendarIcon.png", label: "Calendar" },
+						{ icon: "css/images/contactsIcon.png", label: "Contacts", selected: true }
+					]
+					},
+					{ icon: "css/images/folder.png", label: "Inbox", expanded: true, items: [
+						{ icon: "css/images/folder.png", label: "Admin" },
+						{ icon: "css/images/folder.png", label: "Corporate" },
+						{ icon: "css/images/folder.png", label: "Finance" },
+						{ icon: "css/images/folder.png", label: "Other" }
+					]
+					},
+					{ icon: "css/images/recycle.png", label: "Deleted Items" },
+					{ icon: "css/images/notesIcon.png", label: "Notes" },
+					{ iconsize: 14, icon: "css/images/settings.png", label: "Settings" },
+					{ icon: "css/images/favorites.png", label: "Favorites" }
+				];
+				div.find('#jqxWidget我的电脑').append(
+						'<div style="float: left;">'+
+						'<div id="jqxTree1" style="float: left;">'+
+						'</div>'+
+						'</div>'
+				)
+				if(div.find('#jqxWidget我的电脑').length>0){
+					// create jqxTree
+					div.find('#jqxTree1').jqxTree({allowDrop: false,source: source, width: '145px',height:'458px'});
+				}
+
+
+
+
+				n<100?n+=25:n=0;
+				div.find('#window' +t.title).jqxWindow({
+					position: { x:(document.body.clientWidth-800)/2+n, y:document.body.clientHeight/2-250+n} ,
+					showCollapseButton: true, maxHeight: 600, maxWidth: 800, minHeight: 300, minWidth: 100, height: 500, width: 800,
+					initContent: function () {
+//						$('#window').jqxWindow('focus');
+						$('#window' +t.title).jqxDragDrop({ restricter: 'parent',  dropTarget: '.drop-target' });
+					}
+				});
+			},
+			init:function(t){
+				return this.createWindow(t);
+			}
+		};
+		var r = $.extend({},defaultWindow,options||{});
+		return r;
+	};
+
+
+
+
+	SignOut=function(){
+		window.location.href='file:///C:/Users/Kim/Desktop/%E6%A8%A1%E6%8B%9F%E6%A1%8C%E9%9D%A2%E7%B3%BB%E7%BB%9F/%E6%A8%A1%E6%8B%9F%E6%A1%8C%E9%9D%A2login.html';
+	}
+
+	$.fn.clock = function(){//===========时钟
+		var $$ = $(this);
+
+		clock();
+
+		function clock(){
+			var currentDate = new Date();
+			var year = currentDate.getFullYear();
+			var month = currentDate.getMonth()+1;
+			var date = currentDate.getDate();
+			var hour = currentDate.getHours();
+			var minute = currentDate.getMinutes();
+			var second = currentDate.getSeconds();
+
+			if (parseInt(month)<10) month = '0'+month;
+			if (parseInt(date)<10) date = '0'+date;
+			if (parseInt(minute)<10) minute = '0'+minute;
+			if (parseInt(second)<10) second = '0'+second;
+			var time = '<img style="margin-right: 5px;margin-bottom: 3px" src="css/images/icon-time.png" alt="clock" />'+year+'-'+month+'-'+date+' '+hour+':'+minute+':'+second;
+			$$.html(time);
+
+			var timer = setTimeout(function(){
+				clearTimeout(timer);
+				clock()
+			},1000);
+		}
+	};
+
+
+
+</script>
+
+</body>
+</html>
